@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Movie.css';
+import LinesElipsis from 'react-lines-ellipsis';
 
 /*
 smart component
@@ -39,16 +40,22 @@ class Movie extends Component {
 function Movie({ title, poster, genres, synopsis }) {
     return (
         <div className="Movie">
-            <div className="Movie_Columns">
-                <MoviePoster poster={poster} />
+            <div className="Movie_Column">
+                <MoviePoster poster={poster} alt={title} />
             </div>
-            <div className="Moive_Columns">
+            <div className="Moive_Column">
                 <h1>{title}</h1>
                 <div className="Movie_Genres">
                     {genres.map((genre, index) => <MovieGenre genre={genre} key={index} />)}
                 </div>
                 <p className="Movie_Synopsis">
-                    {synopsis}
+                    <LinesElipsis 
+                        text={synopsis}
+                        maxLine='3'
+                        ellipsis='...'
+                        trimRight
+                        basedOn='letters'
+                    />
                 </p>
             </div>
         </div>
@@ -56,9 +63,9 @@ function Movie({ title, poster, genres, synopsis }) {
 }
 
 // stateless functional
-function MoviePoster({ poster }) {
+function MoviePoster({ poster, alt }) {
     return (
-        <img src={poster} alt="Movie Poster" />
+        <img src={poster} alt="Movie Poster" title={alt} className="Movie_Poster" />
     )
 }
 

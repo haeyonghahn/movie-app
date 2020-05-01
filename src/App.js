@@ -83,7 +83,7 @@ class App extends Component {
     Promise : 비동기 방식으로 다른 작업을 계속 스케줄할 수 있도록 한다.
     영화 api 사이트 : https://yts.mx/api#list_movies
     */
-    return fetch("https://yts.mx/api/v2/list_movies.json?sort_by=like_count")
+    return fetch("https://yts.mx/api/v2/list_movies.json?sort_by=download_count")
             // then은 fetch가 성공적으로 완료되면 수행된다. 
             .then(photato => photato.json())
             .then(json => json.data.movies)
@@ -92,8 +92,9 @@ class App extends Component {
   }
 
   render() {
+    const { movies } = this.state;
     return (
-      <div className="App">
+      <div className={movies ? "App" : "App--loading"}>
         {/* 데이터가 없을 때 'Loading을 띄우고, 있으면 영화정보가 보이도록 한다. */}
         {this.state.movies ? this._renderMovies() : 'Loading'}
       </div>
