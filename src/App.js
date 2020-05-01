@@ -23,8 +23,7 @@ class App extends Component {
 
   // state를 변경하면 새로운 state와 함께 render가 다시 작동된다.
   state = {
-    // greeting: 'Hello!',
-
+    
   };
 
   componentDidMount() {
