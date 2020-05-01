@@ -52,9 +52,15 @@ class App extends Component {
   // 언더바는 리액트 기능과 유저 기능에 차이를 표시하기 위함이다.
   _renderMovies = () => {
     const movies = this.state.movies.map((movie) => {
-      return <Movie title={movie.title} poster={movie.large_cover_image} key={movie.id} />
-    });
-    return movies;
+      return <Movie
+        title={movie.title} 
+        poster={movie.medium_cover_image} 
+        key={movie.id} 
+        genres={movie.genres}
+        synopsis={movie.synopsis}
+      />
+    })
+    return movies
   }
 
   // async : 비동기 방식으로 함수를 실행한다.
